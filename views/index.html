@@ -19,7 +19,7 @@
         {% if name %}
         <form action="/tweets" method="POST">
           <label for="name_field">Name:</label>
-          <input name="name" type="text" id="name_field" value={{name.split(' ')[0]}}&nbsp;{{name.split(' ')[1]}}>
+          <input name="name" type="text" id="name_field" value="TODO">
 
           <label for="text_field">Text:</label>
           <input name="text" type="text" id="text_field" style="width: 350px;" />
@@ -32,7 +32,7 @@
       <!-- display tweets here -->
       {% for tweet in tweets %}
         <li>
-          <a href={{'users/'+tweet.name.split(' ').join('%20')}}><strong>{{tweet.name}}</strong><br></a>
+          <p id = 'username'>{{tweet.name}}</p>
           <a href={{'tweets/'+tweet.id}}>{{tweet.content}}</a><br>
         </li>
       {% endfor %}

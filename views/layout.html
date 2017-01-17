@@ -60,7 +60,7 @@
       </div>
 
       <!-- Begin page content -->
-      <div class="container">
+      <div id="tweets" class="container">
         {% block content %}Welcome to Twitter.js{% endblock %}
       </div> <!-- end container -->
 
@@ -92,8 +92,21 @@
     // When 'new_tweet' events are fired, do something with the packaged tweet
     socket.on('newTweet', function (tweet) {
       console.log(tweet);
-      alert('Refreshing... check the console...');
-      // some logic to add the new tweet to the DOM…
+      let tweetBody = document.getElementById('tweets');
+      let newTweet = document.createElement('li');
+
+      let username = document.createElement('p');
+      username.innerHTML = tweet.name;
+      username.id = 'username';
+
+      newTweet.appendChild(username);
+
+      let text = document.createTextNode(tweet.content);
+      newTweet.appendChild(text);
+
+
+
+      tweetBody.appendChild(newTweet);
     });
   </script>
 
