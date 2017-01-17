@@ -3,6 +3,7 @@ let data = [];
 
 function add (name, content){
   data.push({ name: name, content: content, id: data.length });
+  return _.clone(data[data.length - 1]);
 }
 
 function list (){
