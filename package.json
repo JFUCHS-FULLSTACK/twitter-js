@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mariaxia/twitter-js#readme",
   "dependencies": {
     "express": "^4.14.0",
+    "lodash": "^4.17.4",
     "nunjucks": "^3.0.0",
     "volleyball": "^1.4.1"
   }
