@@ -25,10 +25,22 @@ const fs = require('fs');
 //   });
 // });
 
+router.get('/users/:name', function(req, res, next){
+  const name = req.params.name;
+  let userTweets = tweetBank.find( {name: name} );
+  res.render('index', {tweets: userTweets});
+});
+
+router.get('/tweets/:id', function(req, res, next){
+  const id = +req.params.id;
+  console.log(id);
+  let idTweets = tweetBank.find( {id: id} );
+  res.render('index', {tweets: idTweets});
+});
 
 router.get('/', function(req, res){
   let tweets = tweetBank.list();
-  res.render('index', {tweets: tweets});
+  res.render('index', {showForm: true, tweets: tweets});
 });
 
 module.exports = router;

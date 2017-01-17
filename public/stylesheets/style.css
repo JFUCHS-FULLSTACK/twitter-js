@@ -20,7 +20,6 @@ body {
   background-color: #f5f5f5;
 }
 
-
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
@@ -31,6 +30,17 @@ body {
 .container .text-muted {
   margin: 20px 0;
 }
+
+.container li {
+  list-style-type: none;
+  padding-bottom: 10px;
+}
+
+.container form {
+  padding-bottom: 20px;
+}
+
+.container
 
 #footer > .container {
   padding-left: 15px;
