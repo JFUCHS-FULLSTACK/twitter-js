@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const volleyball = require('volleyball');
+const nunjucks = require('nunjucks');
+
+app.engine('html', nunjucks.render);
+app.set('view engine', 'html');
+nunjucks.configure('views', { noCache: true });
 
 app.use('/', volleyball);
-
-// app.use('/', function(req, res, next){
-//   console.log(req.method, req.url, res.statusCode);
-//   next();
-// });
 
 app.use('/:page', function(req, res, next){
   if (req.params.page === 'special')
@@ -19,7 +19,8 @@ app.use('/:page', function(req, res, next){
 });
 
 app.get('/', function(req, res){
-  res.send('Welcome!');
+  const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+  res.render('index', { title : 'An Example', people: people });
 });
 
 app.listen(PORT, function(){
