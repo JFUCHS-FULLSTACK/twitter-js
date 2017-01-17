@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const tweetBank = require('../tweetBank');
-const fs = require('fs');
+const urlencodedParser = require('body-parser').urlencoded({ extended: false });
 
 // router.get('/:name/:nom', function(req, res, next){
 //
@@ -25,22 +25,30 @@ const fs = require('fs');
 //   });
 // });
 
+router.get('/', function(req, res){
+  let tweets = tweetBank.list();
+  res.render('index', {showForm: true, name: 'Enter name', tweets: tweets});
+});
+
 router.get('/users/:name', function(req, res, next){
   const name = req.params.name;
   let userTweets = tweetBank.find( {name: name} );
-  res.render('index', {tweets: userTweets});
+  res.render('index', {showForm: true, name: name, tweets: userTweets});
 });
 
 router.get('/tweets/:id', function(req, res, next){
   const id = +req.params.id;
   console.log(id);
   let idTweets = tweetBank.find( {id: id} );
-  res.render('index', {tweets: idTweets});
+  res.render('index', {showForm: false, tweets: idTweets});
 });
 
-router.get('/', function(req, res){
-  let tweets = tweetBank.list();
-  res.render('index', {showForm: true, tweets: tweets});
-});
+router.post('/tweets', urlencodedParser, function(req, res){
+  if (!req.body) return res.sendStatus(400);
+  let name = req.body.name;
+  let tweet = req.body.text;
+  tweetBank.add(name, tweet);
+  res.redirect('/');
+})
 
 module.exports = router;

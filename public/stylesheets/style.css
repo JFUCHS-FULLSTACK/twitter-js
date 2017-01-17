@@ -31,6 +31,10 @@ body {
   margin: 20px 0;
 }
 
+a {
+  color: black;
+}
+
 .container li {
   list-style-type: none;
   padding-bottom: 10px;

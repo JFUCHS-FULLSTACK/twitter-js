@@ -14,21 +14,27 @@
     <div class="col-md-9">
 
       <!-- display tweet form here -->
+
       {% if showForm %}
+        {% if name %}
         <form action="/tweets" method="POST">
           <label for="name_field">Name:</label>
-          <input name="name" type="text" id="name_field" />
+          <input name="name" type="text" id="name_field" value={{name.split(' ')[0]}}&nbsp;{{name.split(' ')[1]}}>
 
           <label for="text_field">Text:</label>
           <input name="text" type="text" id="text_field" style="width: 350px;" />
 
           <input type="submit" value="Submit" />
         </form>
+        {% endif %}
       {% endif %}
 
       <!-- display tweets here -->
       {% for tweet in tweets %}
-        <li><strong>{{tweet.name}}</strong><br><a href={{'tweets/'+tweet.id}}>{{tweet.content}}</a><br></li>
+        <li>
+          <a href={{'users/'+tweet.name.split(' ').join('%20')}}><strong>{{tweet.name}}</strong><br></a>
+          <a href={{'tweets/'+tweet.id}}>{{tweet.content}}</a><br>
+        </li>
       {% endfor %}
 
     </div>

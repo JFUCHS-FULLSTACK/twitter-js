@@ -14,8 +14,6 @@ app.use('/', volleyball);
 app.use(express.static('public'));
 app.use('/', routes);
 
-
-
 // app.use('/:page', function(req, res, next){
 //   if (req.params.page === 'special'){
 //     res.send("You've reached the special area.");
